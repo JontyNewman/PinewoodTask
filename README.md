@@ -6,7 +6,7 @@ This is my attempt at the technical task as specified by Pinewood Technologies.
 
 The solution uses an in-memory database and has two startup projects, namely WebApi and WebUi. You can [set multiple startup projects in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects).
 
-Alternatively, the two projects can be run concurrently using the [.NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools/).
+Alternatively, the two projects can be run concurrently using the [.NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools/). You will need to **amend the `HttpCustomerRepository.BaseAddress` in `appsettings.Development.json` for WebUi**.
 
 ```sh
 cd path/to/WebApi
@@ -17,6 +17,4 @@ dotnet run
 cd path/to/WebUi
 dotnet run
 ```
-
-If you are using the .NET CLI, you will need to **amend the `HttpCustomerRepository.BaseAddress` in `appsettings.Development.json` for WebUi**.
 
