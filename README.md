@@ -18,5 +18,5 @@ cd path/to/WebUi
 dotnet run
 ```
 
-If you are using the .NET CLI, you will need to **amend the `HttpCustomerRepository.BaseAddress` in `appSettings.Development.json` for WebUi**.
+If you are using the .NET CLI, you will need to **amend the `HttpCustomerRepository.BaseAddress` in `appsettings.Development.json` for WebUi**.
 
