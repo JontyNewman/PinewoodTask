@@ -1,0 +1,62 @@
+﻿@using JontyNewman.PinewoodTask.WebUi.Extensions
+@model CustomerForm
+@{
+    var state = Model.ModelState;
+    var root = Model.Root;
+    
+    var isInvalidName = state.IsInvalid(root.Append(nameof(Customer.Name)).ToArray());
+    var isInvalidEmail = state.IsInvalid(root.Append(nameof(Customer.Email)).ToArray());
+    var isInvalidLine1 = state.IsInvalid(root.Append(nameof(Customer.Address)).Append(nameof(Address.Line1)).ToArray());
+    var isInvalidLine2 = state.IsInvalid(root.Append(nameof(Customer.Address)).Append(nameof(Address.Line2)).ToArray());
+    var isInvalidTown = state.IsInvalid(root.Append(nameof(Customer.Address)).Append(nameof(Address.Town)).ToArray());
+    var isInvalidCounty = state.IsInvalid(root.Append(nameof(Customer.Address)).Append(nameof(Address.County)).ToArray());
+    var isInvalidPostcode = state.IsInvalid(root.Append(nameof(Customer.Address)).Append(nameof(Address.Postcode)).ToArray());
+}
+
+<div class="mb-3">
+    <label asp-for="@Model.Customer.Name" class="form-label">Name</label>
+    <input asp-for="@Model.Customer.Name" class="form-control @(isInvalidName ? "is-invalid" : "")" />
+    <span asp-validation-for="@Model.Customer.Name" class="invalid-feedback"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="@Model.Customer.Email" class="form-label">Email address</label>
+    <input asp-for="@Model.Customer.Email" class="form-control @(isInvalidEmail ? "is-invalid" : "")" />
+    <span asp-validation-for="@Model.Customer.Email" class="invalid-feedback"></span>
+</div>
+
+<fieldset>
+
+    <legend>Address</legend>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Customer.Address.Line1" class="form-label">Line 1</label>
+        <input asp-for="@Model.Customer.Address.Line1" class="form-control @(isInvalidLine1 ? "is-invalid" : "")" value="@Model.Customer.Address.Line1" />
+        <span asp-validation-for="@Model.Customer.Address.Line1" class="invalid-feedback"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Customer.Address.Line2" class="form-label">Line 2 (optional)</label>
+        <input asp-for="@Model.Customer.Address.Line2" class="form-control @(isInvalidLine2 ? "is-invalid" : "")" />
+        <span asp-validation-for="@Model.Customer.Address.Line2" class="invalid-feedback"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Customer.Address.Town" class="form-label">Town or city</label>
+        <input asp-for="@Model.Customer.Address.Town" class="form-control @(isInvalidTown ? "is-invalid" : "")" />
+        <span asp-validation-for="@Model.Customer.Address.Town" class="invalid-feedback"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Customer.Address.County" class="form-label">County</label>
+        <input asp-for="@Model.Customer.Address.County" class="form-control @(isInvalidCounty ? "is-invalid" : "")" />
+        <span asp-validation-for="@Model.Customer.Address.County" class="invalid-feedback"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="@Model.Customer.Address.Postcode" class="form-label">Postcode</label>
+        <input asp-for="@Model.Customer.Address.Postcode" class="form-control @(isInvalidPostcode ? "is-invalid" : "")" />
+        <span asp-validation-for="@Model.Customer.Address.Postcode" class="invalid-feedback"></span>
+    </div>
+
+</fieldset>

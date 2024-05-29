@@ -1,0 +1,33 @@
+﻿@page
+@using JontyNewman.PinewoodTask.WebUi.Pages.Shared
+@model NewModel
+@{
+    ViewData["Title"] = "New Customer";
+}
+
+<div class="mb-3">
+    <a asp-page="../Customers">
+        <span class="font-monospace" aria-hidden="true">&#9664;</span>
+        Back
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-7 col-lg-6 col-xl-5">
+        @if (!ModelState.IsValid)
+        {
+            <div asp-validation-summary="All" class="alert alert-danger">
+                <p>There is a problem</p>
+            </div>
+        }
+        <form method="post">
+            <partial name="_CustomerForm" model="new CustomerForm()
+            {
+                Customer = Model.Customer,
+                ModelState = Model.ModelState,
+                Root = [nameof(Model.Customer)]
+            }" />
+            <button type="submit" class="btn btn-success">Add customer</button>
+        </form>
+    </div>
+</div>

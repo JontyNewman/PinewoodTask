@@ -1,0 +1,58 @@
+﻿@page
+@using static JontyNewman.PinewoodTask.Utilities.AddressUtility
+@model CustomersModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="mb-3">
+    <a asp-page="Customers/New" class="btn btn-success">Add customer</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <th scope="row">@customer.Id</th>
+                <td>@customer.Name</td>
+                <td>
+                    <a href="mailto:@customer.Email">@customer.Email</a>
+                </td>
+                <td>
+                    <address>
+                        @{
+                            var lines = ToAddressLinesWithoutBlanks(customer.Address);
+                            var lineCount = lines.Count();
+                        }
+                        @for (var i = 0; i < lineCount; i++)
+                        {
+                            @lines.ElementAt(i);
+                            @if (i < lineCount - 1)
+                            {
+                                <br />
+                            }
+                        }
+                    </address>
+                </td>
+                <td>
+                    <a asp-page="Customers/Edit" asp-route-id="@customer.Id" class="btn btn-primary">
+                        Edit<span class="visually-hidden"> customer @customer.Id</span>
+                    </a>
+                    <a asp-page="Customers/Remove" asp-route-id="@customer.Id" class="btn btn-danger">
+                        Remove<span class="visually-hidden"> customer @customer.Id</span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+﻿@page "/Customers/{Id}/Remove"
+@model RemoveModel
+@{
+    var customer = Model.Customer;
+}
+
+<form method="post">
+    <p>Are you sure you want to remove customer &ldquo;@customer.Name&rdquo; (@customer.Id)?</p>
+    <p>
+        <button type="submit" class="btn btn-danger">
+            Remove customer<span class="visually-hidden"> @customer.Id</span>
+        </button>
+        <a asp-page="/Customers" class="btn btn-link">Cancel</a>
+    </p>
+</form>
